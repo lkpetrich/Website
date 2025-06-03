@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Hymn to Stalin</title>
+<link rel="stylesheet" href="../style.css">
+<script type="text/javascript">
+var Hymn = "Thank you, $Stalin. Thank you because I am joyful. Thank you because I am well. No matter how old I become, I shall never forget how we received $Stalin two days ago. Centuries will pass, and the generations still to come will regard us as the happiest of mortals, as the most fortunate of men, because we lived in the century of centuries, because we were privileged to see $Stalin, our inspired leader. Yes, and we regard ourselves as the happiest of mortals because we are the contemporaries of a $man who never had an equal in world history. <br><br> The men of all ages will call on thy name, which is strong, beautiful, wise and marvelous. Thy name is engraven on every factory, every machine, every place on the earth, and in the hearts of all men. <br><br> Every time I have found myself in $his presence I have been subjugated by $his strength, $his charm, $his grandeur. I have experienced a great desire to sing, to cry out, to shout with joy and happiness. And now see me--me!--on the same platform where the Great $Stalin stood a year ago. In what country, in what part of the world could such a thing happen. <br><br> I write books. I am an author. All thanks to thee, O great educator, $Stalin. I love a young woman with a renewed love and shall perpetuate myself in my children--all thanks to thee, great educator, $Stalin. I shall be eternally happy and joyous, all thanks to thee, great educator, $Stalin. Everything belongs to thee, chief of our great country. And when the woman I love presents me with a child the first word it shall utter will be : $Stalin. <br><br> O great $Stalin, O leader of the peoples, <br> Thou who broughtest man to birth. <br> Thou who fructifies the earth, <br> Thou who restorest to centuries, <br> Thou who makest bloom the spring, <br> Thou who makest vibrate the musical chords... <br> Thou, splendour of my spring, O thou, <br> Sun reflected by millions of hearts. <br><br> -- A. O. Avdienko, edited here"
+function SeeIt()
+{
+	// Get a copy of 
+	var EditedHymn = Hymn
+	
+	// Replace the "Santa Claus" string
+	var Stalin = document.getElementById("Stalin").value
+	EditedHymn = EditedHymn.replace(/\$Stalin/g,Stalin)
+	
+	var man = document.getElementById("man").value
+	EditedHymn = EditedHymn.replace(/\$man/g,man)
+	
+	var his = document.getElementById("his").value
+	EditedHymn = EditedHymn.replace(/\$his/g,his)
+	
+	// Show it
+	var HymnDisplay = document.getElementById("Edited Hymn")
+	HymnDisplay.innerHTML = EditedHymn
+}
+</script>
+</head>
+<body>
+During his reign,
+<a href="http://en.wikipedia.org/wiki/Joseph_Stalin">Joseph Stalin</a> had a big personality cult of himself,
+some of which you can find in places like
+<a href="http://www.fordham.edu/halsall/mod/stalin-worship.html">Modern History Sourcebook: Hymn to Stalin</a> and
+<a href="http://www.historyguide.org/europe/cult.html">Stalin and the "Cult of Personality"</a>.
+From A. O. Avdienko's paean of praise in those two references, you can construct your own by putting in someone's name, selecting various features of it, and then pressing "Let's See It!".
+<br><br>
+
+Who:
+<input id="Stalin" type="text" value="Stalin"><br>
+Who is a:
+<input id="man" type="text" value="man"><br>
+Possessive:
+<select id="his">
+	<option value="his">his</option>
+	<option value="her">her</option>
+	<option value="its">its</option>
+	<option value="their">their</option>
+</select><br>
+<input value="Let's See It!" onClick="SeeIt()" type="button">
+<br><br><br><br>
+<span id="Edited Hymn"></span>
+</body>
+<p>
+Back to the <a href="../index.html">index page</a>
+</p>
+</html>

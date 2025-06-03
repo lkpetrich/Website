@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>Yes, Virginia, There Is A...</title>
+<link rel="stylesheet" href="../style.css">
+<script type="text/javascript">
+var Editorial = "DEAR EDITOR: I am 8 years old. <br> Some of my little friends say there $is no $SantaClaus. <br> Papa says, 'If you see it in THE SUN it's so.' <br> Please tell me the truth; $is there $a $SantaClaus? <br><br> VIRGINIA O'HANLON. <br> 115 WEST NINETY-FIFTH STREET. <br><br> VIRGINIA, your little friends are wrong. They have been affected by the skepticism of a skeptical age. They do not believe except [what] they see. They think that nothing can be which is not comprehensible by their little minds. All minds, Virginia, whether they be men's or children's, are little. In this great universe of ours man is a mere insect, an ant, in his intellect, as compared with the boundless world about him, as measured by the intelligence capable of grasping the whole of truth and knowledge. <br><br> Yes, VIRGINIA, there $is $a $SantaClaus. $He $exists as certainly as love and generosity and devotion exist, and you know that they abound and give to your life its highest beauty and joy. Alas! how dreary would be the world if there were no $SantaClaus. It would be as dreary as if there were no VIRGINIAS. There would be no childlike faith then, no poetry, no romance to make tolerable this existence. We should have no enjoyment, except in sense and sight. The eternal light with which childhood fills the world would be extinguished. <br><br> Not believe in $x $SantaClaus! You might as well not believe in fairies! You might get your papa to hire men to watch in all the chimneys on Christmas Eve to catch $x $SantaClaus, but even if they did not see $x $SantaClaus coming down, what would that prove? Nobody sees $x $SantaClaus, but that is no sign that there $is no $SantaClaus. The most real things in the world are those that neither children nor men can see. Did you ever see fairies dancing on the lawn? Of course not, but that's no proof that they are not there. Nobody can conceive or imagine all the wonders there are unseen and unseeable in the world. <br><br> You may tear apart the baby's rattle and see what makes the noise inside, but there is a veil covering the unseen world which not the strongest man, nor even the united strength of all the strongest men that ever lived, could tear apart. Only faith, fancy, poetry, love, romance, can push aside that curtain and view and picture the supernal beauty and glory beyond. Is it all real? Ah, VIRGINIA, in all this world there is nothing else real and abiding. <br><br> No $SantaClaus! Thank God! $he $lives, and $he $lives forever. A thousand years from now, Virginia, nay, ten times ten thousand years from now, $he will continue to make glad the heart of childhood."
+function SeeIt()
+{
+	// Get a copy of 
+	var EditedEditorial = Editorial
+	
+	// Replace the "Santa Claus" string
+	var SantaClaus = document.getElementById("Santa Claus").value
+	EditedEditorial = EditedEditorial.replace(/\$SantaClaus/g,SantaClaus)
+	
+	// Do the grammatical agreement
+	var NumberAgreement = document.getElementById("Number Agreement").value
+	var GenderAgreement = document.getElementById("Gender Agreement").value
+	
+	var new_is = ""
+	var new_exists = ""
+	var new_lives = ""
+	var new_he = ""
+	var new_xhe = ""
+	if (NumberAgreement >= 1 && NumberAgreement <= 4)
+	{
+		new_is = "is"
+		new_lives = "lives"
+		new_exists = "exists"
+		if (GenderAgreement == 1)
+		{
+			new_he = "he"
+			new_xhe = "He"
+		}
+		else if (GenderAgreement == 2)
+		{
+			new_he = "she"
+			new_xhe = "She"
+		}
+		else if (GenderAgreement == 3)
+		{
+			new_he = "they"
+			new_xhe = "They"
+		}
+		else if (GenderAgreement == 4)
+		{
+			new_he = "it"
+			new_xhe = "It"
+		}
+	}
+	else if (NumberAgreement >= 5 && NumberAgreement <= 6)
+	{
+		new_is = "are"
+		new_exists = "exist"
+		new_lives = "live"
+		new_he = "they"
+		new_xhe = "They"
+	}
+	EditedEditorial = EditedEditorial.replace(/\$is/g,new_is)
+	EditedEditorial = EditedEditorial.replace(/\$exists/g,new_exists)
+	EditedEditorial = EditedEditorial.replace(/\$lives/g,new_lives)
+	EditedEditorial = EditedEditorial.replace(/\$he/g,new_he)
+	EditedEditorial = EditedEditorial.replace(/\$He/g,new_xhe)
+
+	var new_a = ""
+	if (NumberAgreement == 1)
+		new_a = "a"
+	else if (NumberAgreement == 2)
+		new_a = "an"
+	else if (NumberAgreement == 3)
+		new_a = "the"
+	else if (NumberAgreement == 4)
+		new_a = ""
+	else if (NumberAgreement == 5)
+		new_a = ""
+	else if (NumberAgreement == 6)
+		new_a = "the"
+	EditedEditorial = EditedEditorial.replace(/\$a/g,new_a)
+	
+	var ExtraArticle = document.getElementById("Extra Article").value
+	
+	var new_x = ""
+	if (ExtraArticle == 1)
+		new_x = ""
+	else if (ExtraArticle == 2)
+		new_x = "a"
+	else if (ExtraArticle == 3)
+		new_x = "an"
+	else if (ExtraArticle == 4)
+		new_x = "the"
+	EditedEditorial = EditedEditorial.replace(/\$x/g,new_x)
+	
+	// Show it
+	var EditorialDisplay = document.getElementById("Edited Editorial")
+	EditorialDisplay.innerHTML = EditedEditorial
+}
+</script>
+</head>
+<body>
+In 1897, the editor of the <i>New York Sun</i> made a famous contribution to Santa Claus lore
+with his famous editorial <i>Yes, Virginia, there is a Santa Claus</i>
+(from <a href="http://www.newseum.org/yesvirginia/">Newseum</a> and
+<a href="http://en.wikipedia.org/wiki/Yes,%20Virginia,%20there%20is%20a%20Santa%20Claus">Wikipedia</a>).
+But his reasoning can be applied more generally.
+<br><br>
+Type in the name of some entity or entities,
+then select with the popups the words that grammatically agree with it.
+When you are ready, press "Let's See It!"
+<br><br>
+Yes, Virginia, there
+<select id="Number Agreement">
+	<option value="1">is a</option>
+	<option value="2">is an</option>
+	<option value="3">is the</option>
+	<option value="4">is</option>
+	<option value="5">are</option>
+	<option value="6">are the</option>
+</select>
+<input id="Santa Claus" type="text" value="Santa Claus">
+,
+<br>
+who is
+<select id="Gender Agreement">
+	<option value="1">a boy</option>
+	<option value="2">a girl</option>
+	<option value="3">both</option>
+	<option value="4">neither</option>
+</select>
+.
+<br>
+"Not believe in  
+<select id="Extra Article">
+	<option value="1"></option>
+	<option value="2">a</option>
+	<option value="3">an</option>
+	<option value="4">the</option>
+</select>
+(...)?"
+<br>
+<input value="Let's See It!" onClick="SeeIt()" type="button">
+<br><br><br><br>
+<span id="Edited Editorial"></span>
+<p>
+Back to the <a href="../index.html">index page</a>
+</p>
+</body>
+</html>
