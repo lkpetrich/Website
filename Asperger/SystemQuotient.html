@@ -1,0 +1,1125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>The Systematizing Quotient (SQ)</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript"src="script.js"></script>
+<script type="text/javascript">
+var agree = [1, 4, 5, 7, 13, 15, 19, 20, 25, 29, 30, 33, 34, 37, 41, 44, 48, 49, 53, 55]
+var disagree = [6, 11, 12, 18, 23, 24, 26, 28, 31, 32, 35, 38, 40, 42, 43, 45, 51, 56, 57, 60]
+var scorelabel = "Your System Quotient (SQ) is"
+function calculate()
+{
+	// Get the scoring
+	var scoremenu = document.getElementById("Scoring")
+	var scoring = scoremenu.value
+	var maxindscore = parseInt(scoring)
+	
+	// Go through the questions
+	var questable = document.getElementById("Questions")
+	var ques = questable.rows
+	var numques = ques.length
+	var i
+	// Set up a scoring mask, to indicate whether it's agreement or disagreement that counts:
+	// Agreement = +1, disagreement = -1, neutral = 0
+	// Note: the indexing is converted from 1-based to 0-based
+	var scoremask = new Array(numques)
+	for (i=0; i<numques; i++)
+		scoremask[i] = 0
+	for (i=0; i<agree.length; i++)
+		scoremask[agree[i]-1] = 1
+	for (i=0; i<disagree.length; i++)
+		scoremask[disagree[i]-1] = -1
+	var ansques = 0
+	var score = 0
+	var maxscore = 0
+	for (i=0; i<numques; i++)
+	{
+		var ione = i + 1
+		var btnlst = document.getElementsByName("btn " + ione)
+		var checked = false
+		var j
+		for (j=0; j<btnlst.length; j++)
+		{
+			var btn = btnlst[j]
+			var btnval = parseInt(btn.value)
+			if (btn.checked)
+			{
+				checked = true
+				quesscore = btnval
+			}
+		}
+		if (checked)
+		{
+			ansques += 1
+			mask = scoremask[i]
+			if (mask != 0)
+				maxscore += maxindscore
+			quesscore *= mask
+			if (quesscore < 0) quesscore = 0
+			if (quesscore > maxindscore) quesscore = maxindscore
+			score += quesscore
+		}
+	}
+	if (ansques < numques)
+		alert("You answered only " + ansques + " out of the " + numques + " questions")
+	scoreplace = document.getElementById("Score")
+	scoreplace.innerHTML = scorelabel + " " + score + " out of " + maxscore
+}
+</script>
+</head>
+<body>
+The Systematizing Quotient (SQ)<br>
+How systematic are you?<br>
+<br><br>
+<table id="Questions" border="1" cellpadding="2">
+  <tr class="oddrow">
+    <td>
+      1. When I listen to a piece of music, I always notice the way it&rsquo;s structured.
+    </td>
+    <td>
+      <input type="radio" name="btn 1" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 1" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 1" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 1" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      2. I adhere to common superstitions.
+    </td>
+    <td>
+      <input type="radio" name="btn 2" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 2" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 2" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 2" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      3. I often make resolutions, but find it hard to stick to them.
+    </td>
+    <td>
+      <input type="radio" name="btn 3" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 3" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 3" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 3" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      4. I prefer to read non-fiction than fiction.
+    </td>
+    <td>
+      <input type="radio" name="btn 4" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 4" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 4" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 4" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      5. If I were buying a car, I would want to obtain specific information about its engine capacity.
+    </td>
+    <td>
+      <input type="radio" name="btn 5" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 5" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 5" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 5" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      6. When I look at a painting, I do not usually think about the technique involved in making it.
+    </td>
+    <td>
+      <input type="radio" name="btn 6" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 6" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 6" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 6" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      7. If there was a problem with the electrical wiring in my home, I&rsquo;d be able to fix it myself.
+    </td>
+    <td>
+      <input type="radio" name="btn 7" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 7" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 7" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 7" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      8. When I have a dream, I find it difficult to remember precise details about the dream the next day.
+    </td>
+    <td>
+      <input type="radio" name="btn 8" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 8" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 8" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 8" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      9. When I watch a film, I prefer to be with a group of friends, rather than alone.
+    </td>
+    <td>
+      <input type="radio" name="btn 9" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 9" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 9" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 9" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      10. I am interested in learning about different religions.
+    </td>
+    <td>
+      <input type="radio" name="btn 10" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 10" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 10" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 10" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      11. I rarely read articles or web pages about new technology.
+    </td>
+    <td>
+      <input type="radio" name="btn 11" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 11" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 11" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 11" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      12. I do not enjoy games that involve a high degree of strategy.
+    </td>
+    <td>
+      <input type="radio" name="btn 12" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 12" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 12" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 12" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      13. I am fascinated by how machines work.
+    </td>
+    <td>
+      <input type="radio" name="btn 13" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 13" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 13" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 13" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      14. I make it a point of listening to the news each morning.
+    </td>
+    <td>
+      <input type="radio" name="btn 14" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 14" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 14" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 14" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      15. In maths, I am intrigued by the rules and patterns governing numbers.
+    </td>
+    <td>
+      <input type="radio" name="btn 15" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 15" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 15" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 15" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      16. I am bad about keeping in touch with old friends.
+    </td>
+    <td>
+      <input type="radio" name="btn 16" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 16" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 16" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 16" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      17. When I am relating a story, I often leave out details and just give the gist of what happened.
+    </td>
+    <td>
+      <input type="radio" name="btn 17" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 17" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 17" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 17" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      18. I find it difficult to understand instruction manuals for putting appliances together.
+    </td>
+    <td>
+      <input type="radio" name="btn 18" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 18" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 18" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 18" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      19. When I look at an animal, I like to know the precise species it belongs to.
+    </td>
+    <td>
+      <input type="radio" name="btn 19" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 19" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 19" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 19" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      20. If I were buying a computer, I would want to know exact details about its hard drive capacity and processor speed.
+    </td>
+    <td>
+      <input type="radio" name="btn 20" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 20" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 20" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 20" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      21. I enjoy participating in sports.
+    </td>
+    <td>
+      <input type="radio" name="btn 21" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 21" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 21" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 21" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      22. I try to avoid doing household chores if I can.
+    </td>
+    <td>
+      <input type="radio" name="btn 22" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 22" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 22" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 22" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      23. When I cook, I do not think about exactly how different methods and ingredients contribute to the final product.
+    </td>
+    <td>
+      <input type="radio" name="btn 23" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 23" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 23" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 23" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      24. I find it difficult to read and understand maps.
+    </td>
+    <td>
+      <input type="radio" name="btn 24" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 24" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 24" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 24" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      25. If I had a collection (e.g. CDs, coins, stamps), it would be highly organised.
+    </td>
+    <td>
+      <input type="radio" name="btn 25" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 25" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 25" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 25" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      26. When I look at a piece of furniture, I do not notice the details of how it was constructed.
+    </td>
+    <td>
+      <input type="radio" name="btn 26" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 26" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 26" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 26" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      27. The idea of engaging in &ldquo;risk-taking&rdquo; activities appeals to me.
+    </td>
+    <td>
+      <input type="radio" name="btn 27" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 27" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 27" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 27" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      28. When I learn about historical events, I do not focus on exact dates.
+    </td>
+    <td>
+      <input type="radio" name="btn 28" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 28" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 28" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 28" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      29. When I read the newspaper, I am drawn to tables of information, such as football league scores or stock market indices.
+    </td>
+    <td>
+      <input type="radio" name="btn 29" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 29" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 29" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 29" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      30. When I learn a language, I become intrigued by its grammatical rules.
+    </td>
+    <td>
+      <input type="radio" name="btn 30" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 30" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 30" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 30" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      31. I find it difficult to learn my way around a new city.
+    </td>
+    <td>
+      <input type="radio" name="btn 31" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 31" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 31" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 31" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      32. I do not tend to watch science documentaries on television or read articles about science and nature.
+    </td>
+    <td>
+      <input type="radio" name="btn 32" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 32" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 32" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 32" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      33. If I were buying a stereo, I would want to know about its precise technical features.
+    </td>
+    <td>
+      <input type="radio" name="btn 33" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 33" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 33" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 33" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      34. I find it easy to grasp exactly how odds work in betting.
+    </td>
+    <td>
+      <input type="radio" name="btn 34" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 34" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 34" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 34" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      35. I am not very meticulous when I carry out D.I.Y. (Do It Yourself projects)
+    </td>
+    <td>
+      <input type="radio" name="btn 35" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 35" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 35" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 35" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      36. I find it easy to carry on a conversation with someone I&rsquo;ve just met.
+    </td>
+    <td>
+      <input type="radio" name="btn 36" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 36" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 36" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 36" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      37. When I look at a building, I am curious about the precise way it was constructed.
+    </td>
+    <td>
+      <input type="radio" name="btn 37" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 37" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 37" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 37" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      38. When an election is being held, I am not interested in the results for each constituency (candidate, party, etc.).
+    </td>
+    <td>
+      <input type="radio" name="btn 38" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 38" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 38" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 38" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      39. When I lend someone money, I expect them to pay me back exactly what they owe me.
+    </td>
+    <td>
+      <input type="radio" name="btn 39" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 39" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 39" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 39" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      40. I find it difficult to understand information the bank sends me on different investment and saving systems.
+    </td>
+    <td>
+      <input type="radio" name="btn 40" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 40" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 40" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 40" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      41. When travelling by train, I often wonder exactly how the rail networks are coordinated.
+    </td>
+    <td>
+      <input type="radio" name="btn 41" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 41" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 41" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 41" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      42. When I buy a new appliance, I do not read the instruction manual very thoroughly.
+    </td>
+    <td>
+      <input type="radio" name="btn 42" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 42" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 42" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 42" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      43. If I were buying a camera, I would not look carefully into the quality of the lens.
+    </td>
+    <td>
+      <input type="radio" name="btn 43" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 43" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 43" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 43" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      44. When I read something, I always notice whether it is grammatically correct.
+    </td>
+    <td>
+      <input type="radio" name="btn 44" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 44" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 44" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 44" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      45. When I hear the weather forecast, I am not very interested in the meteorological patterns.
+    </td>
+    <td>
+      <input type="radio" name="btn 45" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 45" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 45" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 45" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      46. I often wonder what it would be like to be someone else.
+    </td>
+    <td>
+      <input type="radio" name="btn 46" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 46" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 46" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 46" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      47. I find it difficult to do two things at once.
+    </td>
+    <td>
+      <input type="radio" name="btn 47" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 47" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 47" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 47" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      48. When I look at a mountain, I think about how precisely it was formed.
+    </td>
+    <td>
+      <input type="radio" name="btn 48" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 48" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 48" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 48" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      49. I can easily visualise how the motorways (highways) in my region link up.
+    </td>
+    <td>
+      <input type="radio" name="btn 49" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 49" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 49" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 49" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      50. When I&rsquo;m in a restaurant, I often have a hard time deciding what to order.
+    </td>
+    <td>
+      <input type="radio" name="btn 50" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 50" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 50" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 50" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      51. When I&rsquo;m in a plane, I do not think about the aerodynamics.
+    </td>
+    <td>
+      <input type="radio" name="btn 51" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 51" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 51" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 51" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      52. I often forget the precise details of conversations I&rsquo;ve had.
+    </td>
+    <td>
+      <input type="radio" name="btn 52" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 52" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 52" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 52" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      53. When I am walking in the country, I am curious about how the various kinds of trees differ.
+    </td>
+    <td>
+      <input type="radio" name="btn 53" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 53" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 53" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 53" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      54. After meeting someone just once or twice, I find it difficult to remember precisely what they look like.
+    </td>
+    <td>
+      <input type="radio" name="btn 54" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 54" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 54" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 54" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      55. I am interested in knowing the path a river takes from its source to the sea.
+    </td>
+    <td>
+      <input type="radio" name="btn 55" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 55" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 55" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 55" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      56. I do not read legal documents very carefully.
+    </td>
+    <td>
+      <input type="radio" name="btn 56" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 56" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 56" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 56" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      57. I am not interested in understanding how wireless communication works.
+    </td>
+    <td>
+      <input type="radio" name="btn 57" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 57" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 57" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 57" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      58. I am curious about life on other planets.
+    </td>
+    <td>
+      <input type="radio" name="btn 58" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 58" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 58" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 58" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      59. When I travel, I like to learn specific details about the culture of the place I am visiting.
+    </td>
+    <td>
+      <input type="radio" name="btn 59" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 59" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 59" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 59" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      60. I do not care to know the names of the plants I see.
+    </td>
+    <td>
+      <input type="radio" name="btn 60" value="2">strongly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 60" value="1">slightly<br>agree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 60" value="-1">slightly<br>disagree</input>
+    </td>
+    <td>
+      <input type="radio" name="btn 60" value="-2">strongly<br>disagree</input>
+    </td>
+  </tr>
+</table>
+<br><br>
+<table cellpadding="2">
+  <tr>
+    <td>
+      <input type="button" value="Calculate your score!" onClick="calculate()"></input>
+      <select id="Scoring">
+        <option value="2" selected="selected">Strongly = 2 * Slightly</option>
+        <option value="1">Strongly = Slightly</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td id="Score">
+       Your Systematizing Quotient (SQ) is
+    </td>
+  </tr>
+</table>
+<br><br>
+<a href="http://www.autismresearchcentre.com/tests/sq_test.asp">Source</a>:<br>
+S. Baron-Cohen, J. Richler, D. Bisarya, N. Gurunathan, & and S. Wheelwright, (2003)<br>
+<i>The Systemising Quotient (SQ) : An investigation of adults with Asperger Syndrome or High Functioning Autism and normal sex differences</i><br>
+Philosophical Transactions of the Royal Society, Series B, Special issue on "Autism : Mind and Brain" 358:361-374<br>
+</body>
+<p>
+Back to the <a href="index.html">Autism/Asperger index page</a>
+</p>
+</html>

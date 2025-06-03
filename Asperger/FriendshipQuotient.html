@@ -1,0 +1,1421 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>The Friendship and Relationship Quotient (FQ)</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript">
+var scorelabel = "Your Friendship and Relationship Quotient (FQ) is"
+function calculate()
+{
+	// Go through the questions
+	var questable = document.getElementById("Questions")
+	var ques = questable.rows
+	var numques = ques.length
+	var i
+	var ansques = 0
+	var score = 0
+	var maxscore = 0
+	for (i=0; i<numques; i++)
+	{
+		var ione = i + 1
+		var btnlst = document.getElementsByName("btn " + ione)
+		var indmaxscore = 0
+		var checked = false
+		var j
+		for (j=0; j<btnlst.length; j++)
+		{
+			var btn = btnlst[j]
+			var btnval = parseInt(btn.value)
+			if (btnval > indmaxscore)
+			{
+				indmaxscore = btnval
+			}
+			if (btn.checked)
+			{
+				checked = true
+				quesscore = btnval
+			}
+		}
+		if (checked)
+		{
+			ansques += 1
+			score += quesscore
+			maxscore += indmaxscore
+		}
+	}
+	if (ansques < numques)
+		alert("You answered only " + ansques + " out of the " + numques + " questions")
+	scoreplace = document.getElementById("Score")
+	scoreplace.innerHTML = scorelabel + " " + score + " out of " + maxscore
+
+}
+</script>
+</head>
+<body>
+The Friendship and Relationship Quotient (FQ)<br>
+How concerned with friends and relations are you?<br>
+<br><br>
+<table id="Questions" border="1" cellpadding="2">
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              1.
+           </td>
+           <td>
+             <input type="radio" name="btn 1" value="5">The most important thing about a friendship is having somebody to confide in.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 1" value="0">The most important thing about a friendship is having somebody to have fun with.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              2.
+           </td>
+           <td>
+             <input type="radio" name="btn 2" value="0">If I had to pick, I would rather have a friend who enjoys doing the same things as me than a friend who feels the same way about life as I do.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 2" value="5">If I had to pick, I would rather have a friend who feels the same way about life as I do, than a friend who enjoys doing the same things as me.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              3.
+           </td>
+           <td>
+             <input type="radio" name="btn 3" value="5">I like to be close to people.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 3" value="0">I like to keep my distance from people.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              4.
+           </td>
+           <td>
+             <input type="radio" name="btn 4" value="0">When I talk with friends on the phone, it is usually to make arrangements rather than to chat.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 4" value="5">When I talk with friends on the phone, it is usually to chat rather than to make arrangements.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              5.
+           </td>
+           <td>
+             <input type="radio" name="btn 5" value="0">I tend to think of an activity I want to do and then find somebody to do it with.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 5" value="5">I tend to arrange to meet somebody and then think of something to do.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              6.
+           </td>
+           <td>
+             <input type="radio" name="btn 6" value="0">I prefer meeting a friend for a specific activity, e.g., going to the cinema, playing golf.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 6" value="5">I prefer meeting a friend for a chat, e.g., at a pub, at a caf&eacute;.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              7.
+           </td>
+           <td>
+             <input type="radio" name="btn 7" value="0">If I moved to a new area, I would put more effort into staying in touch with old friends than making new friends.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 7" value="0">If I moved to a new area, I would put more effort into making new friends than staying in touch with old friends.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              8.
+           </td>
+           <td>
+             <input type="radio" name="btn 8" value="5">My friends value me more as someone who is a support to them than as someone to have fun with.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 8" value="0">My friends value me more as someone to have fun with than as someone who is a support to them.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              9.
+           </td>
+           <td>
+             <input type="radio" name="btn 9" value="5">If a friend had a problem, I would be better at discussing their feelings about the problem than coming up with practical solutions.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 9" value="0">If a friend had a problem, I would be better at coming up with practical solutions than discussing their feelings about the problem.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              10.
+           </td>
+           <td>
+             <input type="radio" name="btn 10" value="0">If a friend was having personal problems, I would wait for them to contact me as I wouldn&rsquo;t want to interfere.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 10" value="0">If a friend was having personal problems, I would contact them to discuss the problem.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              11.
+           </td>
+           <td>
+             <input type="radio" name="btn 11" value="0">When I have a personal problem, I feel that it is better to work it out on my own.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 11" value="5">When I have a personal problem, I feel that it is better to share it with a friend.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 11" value="0">When I have a personal problem, I feel that it is better to try and forget about it.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              12.
+           </td>
+           <td>
+             <input type="radio" name="btn 12" value="5">If I have to say something critical to a friend, I think it&rsquo;s best to broach the subject gently.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 12" value="0">If I have to say something critical to a friend, I think it&rsquo;s best to just come right out and say it.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              13.
+           </td>
+           <td>
+             If I fell out with a good friend and I thought that I hadn&rsquo;t done anything wrong, I would
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 13" value="5">do whatever it takes to repair the relationship.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 13" value="3">be willing to make the first move, as long as they reciprocated.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 13" value="1">be willing to sort out the problem, if they made the first move.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 13" value="0">not feel able to be their <i>close</i> friend anymore.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              14.
+           </td>
+           <td>
+             My ideal working space would be
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 14" value="0">in an office on my own, without any visitors during the day.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 14" value="1">in an office on my own, with an occasional visitor during the day.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 14" value="3">in an office with one or two others.</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 14" value="5">in an open plan office.</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              15.
+           </td>
+           <td>
+             How easy do you find discussing your feelings with your friends?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 15" value="5">Very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 15" value="4">Quite easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 15" value="2">Not very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 15" value="1">Quite difficult</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 15" value="0">Very difficult</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              16.
+           </td>
+           <td>
+             How easy would you find it to discuss your feelings with a stranger?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 16" value="0">Very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 16" value="0">Quite easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 16" value="0">Not very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 16" value="0">Quite difficult</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 16" value="0">Very difficult</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              17.
+           </td>
+           <td>
+             In terms of <i>personality</i>, how similar to your friends do you tend to be?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 17" value="5">Very similar</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 17" value="3">Quite similar</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 17" value="1">Not very similar</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 17" value="0">Very dissimilar</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              18.
+           </td>
+           <td>
+             In terms of <i>interests</i>, how similar to your friends do you tend to be?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 18" value="0">Very similar</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 18" value="0">Quite similar</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 18" value="0">Not very similar</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 18" value="0">Very dissimilar</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              19.
+           </td>
+           <td>
+             How important is it to you what your friends think of you?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 19" value="0">Of no importance</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 19" value="1">Of little importance</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 19" value="2">Fairly important</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 19" value="4">Very important</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 19" value="5">Of utmost importance</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              20.
+           </td>
+           <td>
+             How important is it to you what strangers think of you?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 20" value="0">Of no importance</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 20" value="0">Of little importance</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 20" value="0">Fairly important</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 20" value="0">Very important</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 20" value="0">Of upmost importance</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              21.
+           </td>
+           <td>
+             How easy do you find it to admit to your friends when you&rsquo;re wrong?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 21" value="5">Very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 21" value="4">Quite easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 21" value="2">Not very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 21" value="1">Quite difficult</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 21" value="0">Very difficult</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              22.
+           </td>
+           <td>
+             How easy to do you find it to tell a friend about your weaknesses and failures?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 22" value="5">Very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 22" value="4">Quite easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 22" value="2">Not very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 22" value="1">Quite difficult</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 22" value="0">Very difficult</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              23.
+           </td>
+           <td>
+             How easy do you find it to tell a friend about your achievements and successes?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 23" value="0">Very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 23" value="0">Quite easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 23" value="0">Not very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 23" value="0">Quite difficult</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 23" value="0">Very difficult</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              24.
+           </td>
+           <td>
+             How interested are you in the everyday details (e.g., their relationships, family, what&rsquo;s currently going on in their lives) of your close friends&rsquo; lives?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 24" value="0">Completely disinterested</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 24" value="1">Not very interested</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 24" value="3">Quite interested</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 24" value="5">Very interested</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              25.
+           </td>
+           <td>
+             How interested are you in the everyday details (e.g., their relationships, family, what&rsquo;s currently going on in their lives) of your casual friends&rsquo; lives?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 25" value="0">Completely disinterested</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 25" value="1">Not very interested</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 25" value="3">Quite interested</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 25" value="5">Very interested</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              26.
+           </td>
+           <td>
+             When you are in a group, e.g., at work, school, church, parent group etc., how important is it for you to know the &ldquo;gossip,&rdquo; e.g., who dislikes who, who&rsquo;s had a relationship with who, secrets.
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 26" value="0">Of no importance</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 26" value="1">Of little importance</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 26" value="2">Fairly important</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 26" value="4">Very important</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 26" value="5">Of great importance</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              27.
+           </td>
+           <td>
+             Do you work harder at your career than at maintaining your relationships with friends?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 27" value="0">Yes</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 27" value="5">No</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 27" value="2">Equal</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              28.
+           </td>
+           <td>
+             How often do you make plans to meet with friends?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="0">Once or twice a year</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="1">Once every 2 or 3 months</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="2">Once a month</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="3">Once every couple of weeks</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="4">Once or twice a week</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="5">3 or 4 times a week</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 28" value="5">More than any of the above</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              29.
+           </td>
+           <td>
+             How would you prefer to keep in touch with friends?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 29" value="5">Face to face contact</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 29" value="0">E-mail/letters</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 29" value="2">Telephone calls</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              30.
+           </td>
+           <td>
+             How easy to do you find it to make new friends?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 30" value="5">Very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 30" value="4">Quite easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 30" value="2">Not very easy</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 30" value="1">Quite difficult</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 30" value="0">Very difficult</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              31.
+           </td>
+           <td>
+             What would be the <i>minimum</i> social contact you would need to get through a <i>day</i>?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 31" value="0">No contact&mdash;I don&rsquo;t get lonely</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 31" value="1">Just being near to people, even if I am not talking to them</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 31" value="2">A casual chat, e.g., with a shop assistant or hairdresser</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 31" value="3">A chat with a friend</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 31" value="4">Two or three chats with friends during the day</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 31" value="5">More than any of the above</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              32.
+           </td>
+           <td>
+             What would be the <i>minimum</i> social contact you would need to get through a <i>week</i>?
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="0">None&mdash;I don&rsquo;t get lonely</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="1">Being around people, even if I wasn&rsquo;t talking to them</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="2">Casual chats, e.g., with a shop assistant or hairdresser</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="3">One chat with a friend</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="3">Two or three chats during the week with friends</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="4">One chat every day with a friend</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="5">Two or three chats every day with a friend</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 32" value="5">More than any of the above</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="oddrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              33.
+           </td>
+           <td>
+             When talking with friends, what do you tend to talk about the most:
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="0">Politics and current affairs</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="0">Hobbies and interests (e.g., sport, TV, music, cinema, fashion, holidays, gardening, DIY projects, etc.)</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="5">Personal matters (e.g., life choice decisions, arguments, feelings)</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="0">Work</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="5">Family and friends</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="0">The weather</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 33" value="0">What you&rsquo;ve been doing since last time you spoke</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="evenrow">
+    <td>
+      <table>
+         <tr>
+           <td valign="top">
+              34.
+           </td>
+           <td>
+             At social occasions, when you meet someone for the first time, what are you most likely to talk about:
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">Politics and current affairs</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">Hobbies and interests (e.g., sport, TV, music, cinema, fashion, holidays, gardening, DIY projects, etc.)</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">Personal matters (e.g., life choice decisions, arguments, feelings)</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">Work</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">Family and friends</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">The weather</input>
+           </td>
+         </tr>
+         <tr>
+           <td valign="top">
+           </td>
+           <td>
+             <input type="radio" name="btn 34" value="0">What you&rsquo;ve been doing recently</input>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br><br>
+<table cellpadding="2">
+  <tr>
+    <td>
+      <input type="button" value="Calculate your score!" onClick="calculate()"></input>
+    </td>
+  </tr>
+  <tr>
+    <td id="Score">
+       Your Friendship and Relationship Quotient (FQ) is
+    </td>
+  </tr>
+</table>
+<br><br>
+<a href="http://www.autismresearchcentre.com/tests/fq_test.asp">Source<a>:<br>
+S. Baron-Cohen and S. Wheelwright, (2003)<br>
+<i>The Friendship Questionnaire (FQ): An investigation of adults with Asperger Syndrome or High Functioning Autism, and normal sex differences</i><br>
+Journal of Autism and Developmental Disorders 33:509-517<br>
+<p>
+Back to the <a href="index.html">Autism/Asperger index page</a>
+</p>
+</body>
+</html>
