@@ -1,0 +1,575 @@
+<html>
+<head>
+<title>Dungeons and Dragons Alignment Calculator</title>
+<link rel="stylesheet" href="style.css">
+<style type="text/css">
+.positive {color: #00FF00}
+.neutral {color: #C0C0C0}
+.negative {color: #FF8080}
+.align-type {text-align: center}
+.numerical {text-align: right}
+</style>
+<script type="text/javascript">
+// Score-contribution indexing is:
+// By question
+// By answer
+// By dimension (0: lawfulness, 1: goodness)
+// By positivity (0: positive (lawful, good), 1: negative (chaotic, evil))
+//
+// The answer to each question adds the dimension+positivity value to each possible combination:
+// [[law, chaos], [good, evil]]
+var num_questions = 10
+var num_answers = 4
+
+var contribs = [
+
+// Question 1
+[
+[[1,0],[0,0]],
+[[0,0],[1,0]],
+[[0,1],[0,0]],
+[[0,0],[0,1]]
+],
+
+// Question 2
+[
+[[1,0],[0,0]],
+[[0,0],[0,1]],
+[[0,0],[1,0]],
+[[0,1],[0,0]]
+],
+
+// Question 3
+[
+[[0,1],[1,0]],
+[[1,0],[1,0]],
+[[0,1],[0,1]],
+[[1,0],[0,1]]
+],
+
+// Question 4
+[
+[[1,0],[0,0]],
+[[0,0],[1,0]],
+[[0,1],[0,0]],
+[[0,0],[0,1]]
+],
+
+// Question 5
+[
+[[0,0],[0,1]],
+[[1,0],[0,0]],
+[[0,0],[1,0]],
+[[0,1],[0,0]]
+],
+
+// Question 6
+[
+[[1,0],[0,0]],
+[[0,1],[0,0]],
+[[0,0],[1,0]],
+[[0,0],[0,1]]
+],
+
+// Question 7
+[
+[[0,1],[1,0]],
+[[1,0],[1,0]],
+[[1,0],[0,1]],
+[[0,1],[0,1]]
+],
+
+// Question 8
+[
+[[0,1],[0,0]],
+[[0,0],[1,0]],
+[[1,0],[0,0]],
+[[0,0],[0,1]]
+],
+
+// Question 9
+[
+[[0,1],[0,0]],
+[[0,0],[1,0]],
+[[1,0],[0,0]],
+[[0,0],[0,1]]
+],
+
+// Question 10
+[
+[[0,0],[1,0]],
+[[1,0],[0,0]],
+[[0,0],[0,1]],
+[[0,1],[0,0]]
+]
+
+]
+
+function find_answer(iq,ia)
+{
+	// The first value is 1-based, the second value is 0-based;
+	// however, the function's inputs are both 0-based
+	var id = "Q " + (iq+1) + " " + ia
+	var element = document.getElementById(id)
+	var value = parseInt(element.value)
+	return value
+}
+
+function check_ranking()
+{
+	var misranked_questions = []
+	
+	for (var iq=0; iq<num_questions; iq++)
+	{
+		var num_each = new Array(num_answers)
+		for (var ia=0; ia<num_answers; ia++)
+			num_each[ia] = 0
+		
+		for (var ia=0; ia<num_answers; ia++)
+		{
+			var ans = find_answer(iq,ia)
+			num_each[ans] += 1
+		}
+		
+		for (var ia=0; ia<num_answers; ia++)
+		{
+			if (num_each[ia] != 1)
+			{
+				misranked_questions.push(iq+1)
+				break
+			}
+		}
+	}
+	
+	if (misranked_questions.length > 0)
+		alert("Questions with improperly ranked answers: " + misranked_questions)
+	else
+		alert("All the answers are properly ranked!")
+}
+
+function calculate_scores()
+{
+	// Add up the scores
+	var scores = [[0,0],[0,0]]
+	
+	for (var iq=0; iq<num_questions; iq++)
+	{
+		for (var ia=0; ia<num_answers; ia++)
+		{
+			var ans = find_answer(iq,ia)
+			var ctrb = contribs[iq][ia]
+			for (var id=0; id<2; id++)
+				for (ip=0; ip<2; ip++)
+					scores[id][ip] += ctrb[id][ip]*ans
+		}
+	}
+	
+	for (var id=0; id<2; id++)
+	{
+		var scrs = scores[id]
+		var pos = scrs[0]
+		var neg = scrs[1]
+		var diff = scrs[0] - scrs[1]
+		var scrsx = new Array(pos, neg, diff)
+		for (ip=0; ip<3; ip++)
+		{
+			var elem = document.getElementById("S " + id + " " + ip)
+			elem.innerHTML = scrsx[ip]
+		}
+	}
+}
+</script>
+</head>
+<body>
+This quiz calculates your character's alignment score for the game Dungeons and Dragons.
+Your character's alignment has two dimensions:<br>
+<br>
+<span class="positive">Law</span> -
+<span class="negative">Chaos</span><br>
+<span class="positive">Good</span> -
+<span class="negative">Evil</span><br>
+<br>
+thus ranging over the possibilities<br><br>
+
+<table border="1" cellpadding="6">
+<tr>
+<td class="align-type"><span class="positive">Lawful</span> <span class="positive">Good</span></td>
+<td class="align-type"><span class="positive">Lawful</span> <span class="neutral">Neutral</span></td>
+<td class="align-type"><span class="positive">Lawful</span> <span class="negative">Evil</span></td>
+</tr>
+<tr>
+<td class="align-type"><span class="neutral">Neutral</span> <span class="positive">Good</span></td>
+<td class="align-type"><span class="neutral">Neutral</span> <span class="neutral">Neutral</span></td>
+<td class="align-type"><span class="neutral">Neutral</span> <span class="negative">Evil</span></td>
+</tr>
+<tr>
+<td class="align-type"><span class="negative">Chaotic</span> <span class="positive">Good</span></td>
+<td class="align-type"><span class="negative">Chaotic</span> <span class="neutral">Neutral</span></td>
+<td class="align-type"><span class="negative">Chaotic</span> <span class="negative">Evil</span></td>
+</tr>
+</table>
+<br>
+
+The concept is taken from
+<a href="http://blake.prohosting.com/brentrs/dnd-epicenter/alignment.html">
+DND Epicenter - Alignment</a>.<br>
+The quiz contents were derived from
+<a href="http://blake.prohosting.com/brentrs/dnd-epicenter/alignment_quiz.htm">
+DND Epicenter - Alignment - Quiz</a>.<br>
+You can check those links for more discussion of the various possible alignments.<br>
+
+<br>
+The quiz itself: for each answer to each question,
+select the value of how strongly your character would agree with each answer
+(3 = most agreement, 0 = least agreement).
+<br><br>
+If you wish to ensure that every answer of each question has a different value,
+so that all a question's answers will be ranked from 0 to 3,
+press "Check the Ranking".
+If some sets of answers are not properly ranked, this page will make an alert
+that points out the questions with improperly-ranked answers.
+<br><br>
+When you are finished, press "Calculate the Scores".
+The scores will be 10 less than in the quiz link above,
+because of my decision to count from 0 instead of from 1.
+However, the differences will be unchanged.
+
+
+<!-- The name of each button is Q + (question number), and its value is its index value.
+This is done because there are two scores to add up and not one. -->
+
+<ol>
+
+<li>By adventuring, I am primarily...
+<ol type="a">
+<li><select id="Q 1 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> doing my part to put things right.
+<li><select id="Q 1 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> rescuing the weak and helping the helpless.
+<li><select id="Q 1 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> enjoying the thrill of the dangers faced.
+<li><select id="Q 1 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> acquiring wealth and power through this experience.
+</ol>
+<br>
+
+<li>Were I not fit for an adventuring class, I would most likely be...
+<ol type="a">
+<li><select id="Q 2 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> a man-at-arms in a nearby castle.
+<li><select id="Q 2 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> a bandit raiding the countryside.
+<li><select id="Q 2 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> an herbalist treating the sick.
+<li><select id="Q 2 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> a hermit living alone in the wilderness.
+</ol>
+<br>
+
+<li>My hero is...
+<ol type="a">
+<li><select id="Q 3 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Robin Hood.
+<li><select id="Q 3 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> King Arthur.
+<li><select id="Q 3 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Attilla the Hun.
+<li><select id="Q 3 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Darth Vader.
+</ol>
+<br>
+
+<li>I see myself more as...
+<ol type="a">
+<li><select id="Q 4 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> a soldier.
+<li><select id="Q 4 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> a hero.
+<li><select id="Q 4 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> an adventurer.
+<li><select id="Q 4 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> a rogue.
+</ol>
+<br>
+
+<li>At the end of a successful venture...
+<ol type="a">
+<li><select id="Q 5 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> I kill everyone and take the loot.
+<li><select id="Q 5 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> the party leaders begin planning another venture.
+<li><select id="Q 5 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> I look for ways to help others.
+<li><select id="Q 5 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> We say goodbye to each other, and I go relax my way.
+</ol>
+<br>
+
+<li>
+<ol type="a">
+<li><select id="Q 6 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Careful planning is the surest way to assure success.
+<li><select id="Q 6 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Opportunities come to those flexible enough to grasp them.
+<li><select id="Q 6 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> One should always be ready to help others.
+<li><select id="Q 6 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Look out for number one.
+</ol>
+<br>
+
+<li>
+<ol type="a">
+<li><select id="Q 7 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> If people were free, crime would disappear.
+<li><select id="Q 7 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Prosperity for all is only possible where crime is controlled.
+<li><select id="Q 7 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Government makes it possible for the best people to rise to the top.
+<li><select id="Q 7 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> The function of the police is to oppress those who are just trying to survive.
+</ol>
+<br>
+
+<li>
+<ol type="a">
+<li><select id="Q 8 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> No creature can ever claim ownership of any other creature.
+<li><select id="Q 8 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Stronger creatures use slavery to take advantage of the weak.
+<li><select id="Q 8 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Slavery is a reasonable solution to certain economic problems.
+<li><select id="Q 8 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Some people deserve to be served by others.
+</ol>
+<br>
+
+<li>
+<ol type="a">
+<li><select id="Q 9 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> The government which governs least governs best.
+<li><select id="Q 9 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> The one who always does good need not fear the law.
+<li><select id="Q 9 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Without law, society would collapse.
+<li><select id="Q 9 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Any situation can be made to work to one's own advantage.
+</ol>
+<br>
+
+<li>
+<ol type="a">
+<li><select id="Q 10 0">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Each of us has a duty to all of us.
+<li><select id="Q 10 1">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Each of us has a duty to our country and its government.
+<li><select id="Q 10 2">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> Each of us has a duty to himself.
+<li><select id="Q 10 3">
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected="selected">0</option>
+</select> There is no duty common to all.
+</ol>
+<br>
+
+</ol>
+<input type="button" value="Check the Ranking" onClick="check_ranking()">
+<br><br>
+<input type="button" value="Calculate the Scores" onClick="calculate_scores()">
+<br><br>
+
+<table border="1" cellpadding="2">
+<tr>
+<td>Alignment</td>
+<td class="numerical">Score</td>
+</tr>
+<tr>
+<td><span class="positive">Law</span></td>
+<td class="numerical"><span id="S 0 0" class="positive">0</span></td>
+</tr>
+<tr>
+<td><span class="negative">Chaos</span></td>
+<td class="numerical"><span id="S 0 1" class="negative">0</span></td>
+</tr>
+<tr>
+<td>L-C</td>
+<td class="numerical"><span id="S 0 2">0</span></td>
+</tr>
+<tr>
+<td><span class="positive">Good</span></td>
+<td class="numerical"><span id="S 1 0" class="positive">0</span></td>
+</tr>
+<tr>
+<td><span class="negative">Evil</span></td>
+<td class="numerical"><span id="S 1 1" class="negative">0</span></td>
+</tr>
+<tr>
+<td>G-E</td>
+<td class="numerical"><span id="S 1 2">0</span></td>
+</tr>
+</table>
+
+<p>
+Back to the <a href="index.html">index page</a>
+</p>
+
+</body>
+</html>

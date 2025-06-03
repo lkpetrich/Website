@@ -1,0 +1,47 @@
+body {
+	background-color: #000000;
+	color: #ffffff;
+	font-family: sans-serif;
+	font-size: 18px;
+	line-height: 24px; /* 18 + 3 + 3 px */
+}
+
+/* Menus */
+select {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+/* Buttons */
+input[type=button] {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:link {
+	color: #00ffff;
+}
+
+a:link:hover {
+	color: #00ffff;
+}
+
+a:link:active {
+	color: #00ffff;
+}
+
+a:visited {
+	color: #ff00ff;
+}
+
+a:visited:hover {
+	color: #ff88ff;
+}
+
+a:visited:active {
+	color: #ffccff;
+}
