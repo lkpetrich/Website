@@ -1,0 +1,6 @@
+/* Table formatting for the Rio and London scales */
+table {border-collapse: collapse}
+td {border: solid thin; padding: 2px}
+.numberdisp {text-align: center; border-style: double}
+.scoretablist {display: flex; flex-direction: row}
+.scoretab {margin-right: 2em; margin-bottom: 1em}

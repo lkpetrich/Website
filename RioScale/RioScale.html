@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>The Rio Scale of Extraterrestrial Contacts</title>
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript"src="script.js"></script>
+	<script type="text/javascript">
+	function do_rio1() {
+	
+		const Val_Quality_Type = GetRadioButtonNumber("Rio1-Quality-Type");
+		const Val_Quality_Method = GetRadioButtonNumber("Rio1-Quality-Method");
+		const Val_Quality_Distance = GetRadioButtonNumber("Rio1-Quality-Distance");
+		const Val_Reliability = GetRadioButtonNumber("Rio1-Reliability");
+		
+		const Val_Quality = Val_Quality_Type + Val_Quality_Method + Val_Quality_Distance;
+		const Val_Score = (1./6.) * Val_Quality * Val_Reliability;
+		
+		WriteVal("Value-Rio1-Quality-Type", Val_Quality_Type);
+		WriteVal("Value-Rio1-Quality-Method", Val_Quality_Method);
+		WriteVal("Value-Rio1-Quality-Distance", Val_Quality_Distance);
+		WriteVal("Value-Rio1-Quality--Total-", Val_Quality);
+		
+		WriteVal("Value-Rio1-Quality", Val_Quality);
+		WriteVal("Value-Rio1-Reliability", Val_Reliability);
+		WriteFixVal("Value-Rio1-Score", Val_Score, 3);
+	}
+	</script>
+</head>
+<body>
+
+<h1>The Rio Scale of Extraterrestrial Contacts</h1>
+
+<p>
+<a href="https://iaaseti.org/en/rio-scale/">IAA SETI Permanent Committee: Rio Scale</a>
+(Iván Almár and Jill Tarter, in the 51st International Astronautical Congress,
+29th Review Meeting on the Search for Extraterrestrial Intelligence,
+in Rio de Janeiro, Brazil, in October, 2000)
+is a scale for assessing putative contacts with extraterrestrial intelligent entities.
+It was devised in analogy with several other such scales,
+and the higher a putative contact scores, the greater is its importance. 
+</p>
+
+<table>
+<tr><td style="width: 15%">
+<p>Type of Phenomenon</p>
+</td><td onclick="do_rio1()">
+<input type="radio" name="Rio1-Quality-Type" id="Rio1-Quality-Type-6" value="6" checked="checked" />
+<label for="Rio1-Quality-Type-6">
+(6) Earth-specific message, or an ET artifact, capable of contact, or a physical encounter
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Type" id="Rio1-Quality-Type-5" value="5" />
+<label for="Rio1-Quality-Type-5">
+(5) Omnidirectional message with decipherable information, or a functioning ET artifact or space probe
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Type" id="Rio1-Quality-Type-4" value="4" />
+<label for="Rio1-Quality-Type-4">
+(4) Earth-specific beacon to draw our attention, or an ET artifact with a message to mankind
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Type" id="Rio1-Quality-Type-3" value="3" />
+<label for="Rio1-Quality-Type-3">
+(3) Omnidirectional beacon designed to draw attention, or an ET artifact with a message of a general character
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Type" id="Rio1-Quality-Type-2" value="2" />
+<label for="Rio1-Quality-Type-2">
+(2) Leakage radiation, without possible interpretation, or an ET artifact the purpose of which is understandable
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Type" id="Rio1-Quality-Type-1" value="1" />
+<label for="Rio1-Quality-Type-1">
+(1) Traces of astroengineering, or any indication of technological activity by an extant or extinct civilization at any distance, or an ET artifact, the purpose of which is unknown
+</label>
+</td></tr>
+<tr><td>
+<p>Method of Discovery</p>
+</td><td onclick="do_rio1()">
+<input type="radio" name="Rio1-Quality-Method" id="Rio1-Quality-Method-5" value="5" checked="checked" />
+<label for="Rio1-Quality-Method-5">
+(5) SETI/SETA observation; steady phenomenon verifiable by repeated observation or investigation
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Method" id="Rio1-Quality-Method-4" value="4" />
+<label for="Rio1-Quality-Method-4">
+(4) Non-SETI/SETA observation; steady phenomenon verifiable by repeated observation or investigation
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Method" id="Rio1-Quality-Method-3" value="3" />
+<label for="Rio1-Quality-Method-3">
+(3) SETI/SETA observation; transient phenomenon that has been verified but never repeated
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Method" id="Rio1-Quality-Method-2" value="2" />
+<label for="Rio1-Quality-Method-2">
+(2) Non-SETI/SETA observation; transient phenomenon that is reliable but never repeated
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Method" id="Rio1-Quality-Method-1" value="1" />
+<label for="Rio1-Quality-Method-1">
+(1) From archival data; a posteriori discovery without possiblity of verification
+</label>
+</td></tr>
+<tr><td>
+<p>Distance</p>
+</td><td onclick="do_rio1()">
+<input type="radio" name="Rio1-Quality-Distance" id="Rio1-Quality-Distance-4" value="4" checked="checked" />
+<label for="Rio1-Quality-Distance-4">
+(4) Within the Solar System
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Distance" id="Rio1-Quality-Distance-3" value="3" />
+<label for="Rio1-Quality-Distance-3">
+(3) Within a distance which allows communication (at lightspeed) within a human lifetime
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Distance" id="Rio1-Quality-Distance-2" value="2" />
+<label for="Rio1-Quality-Distance-2">
+(2) Within our Galaxy
+</label>
+<br />
+<input type="radio" name="Rio1-Quality-Distance" id="Rio1-Quality-Distance-1" value="1" />
+<label for="Rio1-Quality-Distance-1">
+(1) Extragalactic 
+</label>
+</td></tr>
+<tr><td>
+<p>Reliability</p>
+</td><td onclick="do_rio1()">
+<input type="radio" name="Rio1-Reliability" id="Rio1-Reliability-4" value="4" checked="checked" />
+<label for="Rio1-Reliability-4">
+(4) Absolutely reliable, without any doubt
+</label>
+<br />
+<input type="radio" name="Rio1-Reliability" id="Rio1-Reliability-3" value="3" />
+<label for="Rio1-Reliability-3">
+(3) Very probable, with verification already carried out
+</label>
+<br />
+<input type="radio" name="Rio1-Reliability" id="Rio1-Reliability-2" value="2" />
+<label for="Rio1-Reliability-2">
+(2) Possible, but should be verified before taken seriously
+</label>
+<br />
+<input type="radio" name="Rio1-Reliability" id="Rio1-Reliability-1" value="1" />
+<label for="Rio1-Reliability-1">
+(1) Very uncertain, but worthy of verification efforts
+</label>
+<br />
+<input type="radio" name="Rio1-Reliability" id="Rio1-Reliability-0" value="0" />
+<label for="Rio1-Reliability-0">
+(0) Obviously fake or fraudulent
+</label>
+</td></tr>
+</table>
+
+<h3>Scores</h3>
+
+<div class="scoretablist">
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Quality</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Type</td>
+<td id="Value-Rio1-Quality-Type"></td>
+</tr>
+<tr>
+<td>Method</td>
+<td id="Value-Rio1-Quality-Method"></td>
+</tr>
+<tr>
+<td>Distance</td>
+<td id="Value-Rio1-Quality-Distance"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio1-Quality--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Overall</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td id="Value-Rio1-Quality"></td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td id="Value-Rio1-Reliability"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio1-Score"></td>
+</tr>
+</table>
+</div>
+
+</div>
+
+<p>
+Back to the <a href="index.html">extraterrestrial-contacts index page</a>
+</p>
+
+<script type="text/javascript">
+
+	// Init the result tables
+	// Down here because the tables' HTML widgets have to be loaded first
+	do_rio1();
+
+</script>
+
+</body>
+</html>

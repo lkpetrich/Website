@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>The Rio Scale of Extraterrestrial Contacts V2</title>
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript"src="script.js"></script>
+	<script type="text/javascript">
+	function do_rio2() {
+	
+		const Val_Quality_Distance = GetRadioButtonNumber("Rio2-Quality-Distance");
+		const Val_Quality_Communication = GetRadioButtonNumber("Rio2-Quality-Communication");
+		const Val_Quality_Awareness = GetRadioButtonNumber("Rio2-Quality-Awareness");
+		const Val_Reliability_Reality_Uncertainty = GetRadioButtonNumber("Rio2-Reliability-Reality-Uncertainty");
+		const Val_Reliability_Reality_Accessibility = GetRadioButtonNumber("Rio2-Reliability-Reality-Accessibility");
+		const Val_Reliability_Reality_Prediction =  GetRadioButtonNumber("Rio2-Reliability-Reality-Prediction");
+		const Val_Reliability_Instrumental_Resemblance =  GetRadioButtonNumber("Rio2-Reliability-Instrumental-Resemblance");
+		const Val_Reliability_Instrumental_Experts =  GetRadioButtonNumber("Rio2-Reliability-Instrumental-Experts");
+		const Val_Reliability_Known_Hoax =  GetRadioButtonNumber("Rio2-Reliability-Known-Hoax");
+		const Val_Reliability_Known_Experts =  GetRadioButtonNumber("Rio2-Reliability-Known-Experts");
+		
+		const Val_Quality = Math.max(Val_Quality_Distance + Val_Quality_Communication + Val_Quality_Awareness, 0);
+		
+		const Val_Reliability_Reality = Val_Reliability_Reality_Uncertainty +
+			((Val_Reliability_Reality_Uncertainty > 6) ?
+			(Val_Reliability_Reality_Accessibility + Val_Reliability_Reality_Prediction) : 0);
+		
+		const Val_Reliability_Instrumental = Val_Reliability_Instrumental_Resemblance +
+			((Val_Reliability_Instrumental_Resemblance > 0) ? Val_Reliability_Instrumental_Experts : 0);
+		
+		const Val_Reliability_Known = Val_Reliability_Known_Hoax +
+			((Val_Reliability_Known_Hoax > 0) ? Val_Reliability_Known_Experts : 0);
+		
+		const Val_Reliability = Val_Reliability_Reality + Val_Reliability_Instrumental + Val_Reliability_Known - 20;
+		
+		const Val_Score = Val_Quality * Math.pow(10., 0.5*(Val_Reliability - 10));
+		
+		WriteVal("Value-Rio2-Quality-Distance", Val_Quality_Distance);
+		WriteVal("Value-Rio2-Quality-Communication", Val_Quality_Communication);
+		WriteVal("Value-Rio2-Quality-Awareness", Val_Quality_Awareness);
+		WriteVal("Value-Rio2-Quality--Total-", Val_Quality);
+		
+		WriteVal("Value-Rio2-Reliability-Reality-Uncertainty", Val_Reliability_Reality_Uncertainty);
+		WriteVal("Value-Rio2-Reliability-Reality-Accessibility", Val_Reliability_Reality_Accessibility);
+		WriteVal("Value-Rio2-Reliability-Reality-Prediction", Val_Reliability_Reality_Prediction);
+		WriteVal("Value-Rio2-Reliability-Reality--Total-", Val_Reliability_Reality);
+		
+		WriteVal("Value-Rio2-Reliability-Instrumental-Resemblance", Val_Reliability_Instrumental_Resemblance);
+		WriteVal("Value-Rio2-Reliability-Instrumental-Experts", Val_Reliability_Instrumental_Experts);
+		WriteVal("Value-Rio2-Reliability-Instrumental--Total-", Val_Reliability_Instrumental);
+		
+		WriteVal("Value-Rio2-Reliability-Known-Hoax", Val_Reliability_Known_Hoax);
+		WriteVal("Value-Rio2-Reliability-Known-Experts", Val_Reliability_Known_Experts);
+		WriteVal("Value-Rio2-Reliability-Known--Total-", Val_Reliability_Known);
+		
+		WriteVal("Value-Rio2-Reliability-Reality", Val_Reliability_Reality);
+		WriteVal("Value-Rio2-Reliability-Instrumental", Val_Reliability_Instrumental);
+		WriteVal("Value-Rio2-Reliability-Known", Val_Reliability_Known);
+		WriteVal("Value-Rio2-Reliability--Total-", Val_Reliability);
+		
+		WriteVal("Value-Rio2-Quality", Val_Quality);
+		WriteVal("Value-Rio2-Reliability", Val_Reliability);
+		WriteFPVal("Value-Rio2-Score", Val_Score, 3);
+	}
+	</script>
+</head>
+<body>
+
+<h1>The Rio Scale of Extraterrestrial Contacts V2</h1>
+
+<p>
+An updated version of the Rio scale was recently proposed:
+Forgan, Wright, Tarter, Korpela, Siemion, Almár, and Piotelat 2018
+<a href="https://www.cambridge.org/core/journals/international-journal-of-astrobiology/article/rio-20-revising-the-rio-scale-for-seti-detections/DF9D6EABEA7D8D84999234BCFB3FADB4">Rio 2.0: revising the Rio scale for SETI detections | International Journal of Astrobiology | Cambridge Core</a>
+It follows the original one in having (quality)x(reliability),
+but its quality scale is revised and its reliability scale is much expanded.
+All the descriptive text is quotes from the article, but the HTML formatting is mine,
+and I have restated the algorithms.
+</p>
+
+<table>
+<tr><td colspan="2">
+<br />
+<b>
+Quality of the signal and its contents
+</b>
+</td></tr>
+<tr><td style="width: 25%">
+What is the estimated distance to the source of the signal?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Quality-Distance" id="Rio2-Quality-Distance-4" value="4" checked="checked" />
+<label for="Rio2-Quality-Distance-4">
+(4) Less than a light day (i.e. in the Solar System)
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Distance" id="Rio2-Quality-Distance-3" value="3" />
+<label for="Rio2-Quality-Distance-3">
+(3) Light-days to light-years (i.e. about as close as the nearest star)
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Distance" id="Rio2-Quality-Distance-2" value="2" />
+<label for="Rio2-Quality-Distance-2">
+(2) Light-years to tens of light-years
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Distance" id="Rio2-Quality-Distance-1" value="1" />
+<label for="Rio2-Quality-Distance-1">
+(1) Hundreds to thousands of light-years (in the Galaxy)
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Distance" id="Rio2-Quality-Distance-0" value="0" />
+<label for="Rio2-Quality-Distance-0">
+(0) Longer/unknown
+</label>
+</td></tr>
+<tr><td>
+What are the prospects for communication with the source of the signal?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Quality-Communication" id="Rio2-Quality-Communication-4" value="4" checked="checked" />
+<label for="Rio2-Quality-Communication-4">
+(4) We are in the active two-way communication
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Communication" id="Rio2-Quality-Communication-3" value="3" />
+<label for="Rio2-Quality-Communication-3">
+(3) We could respond using the same medium/encoding as the signal within 20 years
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Communication" id="Rio2-Quality-Communication-2" value="2" />
+<label for="Rio2-Quality-Communication-2">
+(2) We can understand the signal or we have artefacts we can study
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Communication" id="Rio2-Quality-Communication-0" value="0" />
+<label for="Rio2-Quality-Communication-0">
+(0) No communication is taking place
+</label>
+</td></tr>
+<tr><td>
+Is the sender aware of humanity/its technology?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Quality-Awareness" id="Rio2-Quality-Awareness-2" value="2" checked="checked" />
+<label for="Rio2-Quality-Awareness-2">
+(2) Yes, certainly – the signal is intended for us, specifically
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Awareness" id="Rio2-Quality-Awareness-1" value="1" />
+<label for="Rio2-Quality-Awareness-1">
+(1) Possibly, but there is a little or no evidence for this
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Awareness" id="Rio2-Quality-Awareness-0" value="0" />
+<label for="Rio2-Quality-Awareness-0">
+(0) Almost certainly not (e.g. they are too far away)
+</label>
+<br />
+<input type="radio" name="Rio2-Quality-Awareness" id="Rio2-Quality-Awareness--1" value="-1" />
+<label for="Rio2-Quality-Awareness--1">
+(-1) Senders are apparently extinct
+</label>
+</td></tr>
+<tr><td colspan="2">
+<br />
+<b>
+Reliability of the evidence
+</b>
+<br />
+<br />
+<b>
+How real and amenable to study is the phenomenon?
+</b>
+</td></tr>
+<tr><td>
+Is there a significant uncertainty about whether the phenomenon occurred/occurs at all?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Reality-Uncertainty" id="Rio2-Reliability-Reality-Uncertainty-6" value="6" />
+<label for="Rio2-Reliability-Reality-Uncertainty-6">
+(6, skip the rest) Yes, there is a significant uncertainty
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Reality-Uncertainty" id="Rio2-Reliability-Reality-Uncertainty-7" value="7" checked="checked" />
+<label for="Rio2-Reliability-Reality-Uncertainty-7">
+(7) No, something almost certainly happened
+</label>
+</td></tr>
+<tr><td>
+How amenable to study is the phenomenon?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Reality-Accessibility" id="Rio2-Reliability-Reality-Accessibility-0" value="0" />
+<label for="Rio2-Reliability-Reality-Accessibility-0">
+(0) The phenomena has been observed exactly once (e.g. the Wow! signal).
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Reality-Accessibility" id="Rio2-Reliability-Reality-Accessibility-1" value="1" />
+<label for="Rio2-Reliability-Reality-Accessibility-1">
+(1) The phenomenon has been observed a small but plural number times, either as multiple targets showing similar phenomena, or a single target showing multiple similar events.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Reality-Accessibility" id="Rio2-Reliability-Reality-Accessibility-2" value="2" />
+<label for="Rio2-Reliability-Reality-Accessibility-2">
+(2) The phenomenon has been confirmed to be real and repeated, for instance by multiple groups using a single instrument to observe the phenomenon or by an additional observation with a different instrument or from a different site.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Reality-Accessibility" id="Rio2-Reliability-Reality-Accessibility-3" value="3" checked="checked" />
+<label for="Rio2-Reliability-Reality-Accessibility-3">
+(3) The phenomenon is observed routinely by different groups using different equipment. 
+</label>
+</td></tr>
+<tr><td>
+Is the discoverer of the phenomenon the same person/group that predicted that such a phenomenon would indicate the pres- ence of alien intelligence?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Reality-Prediction" id="Rio2-Reliability-Reality-Prediction--1" value="-1" />
+<label for="Rio2-Reliability-Reality-Prediction--1">
+(-1) The claimants predicted the phenomenon they have 'discovered'.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Reality-Prediction" id="Rio2-Reliability-Reality-Prediction-0" value="0" checked="checked" />
+<label for="Rio2-Reliability-Reality-Prediction-0">
+(0) The claimants have identified a new phenomenon, or one predicted by others.
+</label>
+</td></tr>
+<tr><td colspan="2">
+<br />
+<b>
+How certain are we that the phenomenon is not instrumental?
+</b>
+</td></tr>
+<tr><td>
+Does the phenomenon look like a known instrumental or psychological effect?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Instrumental-Resemblance" id="Rio2-Reliability-Instrumental-Resemblance-0" value="0" />
+<label for="Rio2-Reliability-Instrumental-Resemblance-0">
+(0, skip the rest) Yes (me: instrument artifacts like lens flares, subjective pattern-finding, ...) .
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Instrumental-Resemblance" id="Rio2-Reliability-Instrumental-Resemblance-7" value="7" checked="checked" />
+<label for="Rio2-Reliability-Instrumental-Resemblance-7">
+(7) No.
+</label>
+</td></tr>
+<tr><td>
+What chances do the instrument builders/experts in the method/observers of the phenomenon give that the signal is not instrumental?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Instrumental-Experts" id="Rio2-Reliability-Instrumental-Experts-0" value="0" />
+<label for="Rio2-Reliability-Instrumental-Experts-0">
+(0) These experts have not weighed in at all.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Instrumental-Experts" id="Rio2-Reliability-Instrumental-Experts-1" value="1" />
+<label for="Rio2-Reliability-Instrumental-Experts-1">
+(1) These experts give a ~90% chance that it is instrumental (so a ~10% it is real).
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Instrumental-Experts" id="Rio2-Reliability-Instrumental-Experts-2" value="2" />
+<label for="Rio2-Reliability-Instrumental-Experts-2">
+(2) These experts give even odds that it is instrumental.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Instrumental-Experts" id="Rio2-Reliability-Instrumental-Experts-3" value="3" checked="checked" />
+<label for="Rio2-Reliability-Instrumental-Experts-3">
+(3) These experts give &lt;10% chance that it is instrumental.
+</label>
+</td></tr>
+<tr><td colspan="2">
+<br />
+<b>
+How certain are we that the phenomenon is not natural or anthropogenic?
+</b>
+</td></tr>
+<tr><td>
+Is there a good reason to think the phenomenon is a hoax?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Known-Hoax" id="Rio2-Reliability-Known-Hoax-0" value="0" />
+<label for="Rio2-Reliability-Known-Hoax-0">
+(0, skip the rest) Yes.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Known-Hoax" id="Rio2-Reliability-Known-Hoax-1" value="1" checked="checked" />
+<label for="Rio2-Reliability-Known-Hoax-1">
+(1) No.
+</label>
+</td></tr>
+<tr><td>
+How does a wide community of experts assess the probabilty that there are any known sources of natural or anthropogenic signal that could explain the phenomenon?
+</td><td onclick="do_rio2()">
+<input type="radio" name="Rio2-Reliability-Known-Experts" id="Rio2-Reliability-Known-Experts-0" value="0" />
+<label for="Rio2-Reliability-Known-Experts-0">
+(0) A wide range of experts agree that the signal is clearly natural/anthropogenic, or said experts have not been consulted.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Known-Experts" id="Rio2-Reliability-Known-Experts-1" value="1" />
+<label for="Rio2-Reliability-Known-Experts-1">
+(1) It is consistent with a common phenomenon.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Known-Experts" id="Rio2-Reliability-Known-Experts-3" value="3" />
+<label for="Rio2-Reliability-Known-Experts-3">
+(3) It is consistent only with a rare or poorly understood phenomena.
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Known-Experts" id="Rio2-Reliability-Known-Experts-6" value="6" />
+<label for="Rio2-Reliability-Known-Experts-6">
+(6) It is not consistent with any known natural or anthropogenic phenomena (but unknown natural/anthropogenic phenomena could still be the cause).
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Known-Experts" id="Rio2-Reliability-Known-Experts-8" value="8" />
+<label for="Rio2-Reliability-Known-Experts-8">
+(8) Only extraterrestrial, artificial explanations make sense (i.e. those requiring non-human design and engineering, for instance).
+</label>
+<br />
+<input type="radio" name="Rio2-Reliability-Known-Experts" id="Rio2-Reliability-Known-Experts-9" value="9" checked="checked" />
+<label for="Rio2-Reliability-Known-Experts-9">
+(9) The phenomenon contains information content of clearly intelligent design (i.e. it contains a message; or is an obviously artificial and alien artefact available for close – perhaps robotic – inspection). 
+</label>
+</td></tr>
+</table>
+
+<h3>Scores</h3>
+
+
+<div class="scoretablist">
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Quality</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td id="Value-Rio2-Quality-Distance"></td>
+</tr>
+<tr>
+<td>Communication</td>
+<td id="Value-Rio2-Quality-Communication"></td>
+</tr>
+<tr>
+<td>Awareness</td>
+<td id="Value-Rio2-Quality-Awareness"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio2-Quality--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Reality</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Uncertainty</td>
+<td id="Value-Rio2-Reliability-Reality-Uncertainty"></td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td id="Value-Rio2-Reliability-Reality-Accessibility"></td>
+</tr>
+<tr>
+<td>Prediction</td>
+<td id="Value-Rio2-Reliability-Reality-Prediction"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio2-Reliability-Reality--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Instrumental</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Resemblance</td>
+<td id="Value-Rio2-Reliability-Instrumental-Resemblance"></td>
+</tr>
+<tr>
+<td>Experts</td>
+<td id="Value-Rio2-Reliability-Instrumental-Experts"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio2-Reliability-Instrumental--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Known</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Hoax</td>
+<td id="Value-Rio2-Reliability-Known-Hoax"></td>
+</tr>
+<tr>
+<td>Experts</td>
+<td id="Value-Rio2-Reliability-Known-Experts"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio2-Reliability-Known--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Reliability</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Reality</td>
+<td id="Value-Rio2-Reliability-Reality"></td>
+</tr>
+<tr>
+<td>Instrumental</td>
+<td id="Value-Rio2-Reliability-Instrumental"></td>
+</tr>
+<tr>
+<td>Known</td>
+<td id="Value-Rio2-Reliability-Known"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio2-Reliability--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Overall</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td id="Value-Rio2-Quality"></td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td id="Value-Rio2-Reliability"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Rio2-Score"></td>
+</tr>
+</table>
+</div>
+
+</div>
+
+<p>
+Back to the <a href="index.html">extraterrestrial-contacts index page</a>
+</p>
+
+<script type="text/javascript">
+
+	// Init the result tables
+	// Down here because the tables' HTML widgets have to be loaded first
+	do_rio2();
+
+</script>
+
+</body>
+</html>

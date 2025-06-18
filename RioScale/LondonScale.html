@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>The London Scale of Extraterrestrial-Life Discovery</title>
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript"src="script.js"></script>
+	<script type="text/javascript">
+	function do_ldn() {
+	
+		const Val_Quality_Type = GetRadioButtonNumber("Ldn-Quality-Type");
+		const Val_Quality_Nature = GetRadioButtonNumber("Ldn-Quality-Nature");
+		const Val_Quality_Method = GetRadioButtonNumber("Ldn-Quality-Method");
+		const Val_Quality_Distance = GetRadioButtonNumber("Ldn-Quality-Distance");
+		const Val_Reliability = GetRadioButtonNumber("Ldn-Reliability");
+		
+		const Val_Quality = Val_Quality_Type + Val_Quality_Nature + Val_Quality_Method + Val_Quality_Distance;
+		const Val_Score = 0.1 * Val_Quality * Val_Reliability;
+		
+		WriteVal("Value-Ldn-Quality-Type", Val_Quality_Type);
+		WriteVal("Value-Ldn-Quality-Nature", Val_Quality_Nature);
+		WriteVal("Value-Ldn-Quality-Method", Val_Quality_Method);
+		WriteVal("Value-Ldn-Quality-Distance", Val_Quality_Distance);
+		WriteVal("Value-Ldn-Quality--Total-", Val_Quality);
+		
+		WriteVal("Value-Ldn-Quality", Val_Quality);
+		WriteVal("Value-Ldn-Reliability", Val_Reliability);
+		WriteFixVal("Value-Ldn-Score", Val_Score, 3);
+	}
+	</script>
+</head>
+<body>
+
+
+<h1>The London Scale of Extraterrestrial-Life Discovery</h1>
+
+<p>
+<a href="http://rsta.royalsocietypublishing.org/content/369/1936/679">Discovery of extra-terrestrial life: assessment by scales of its importance and associated risks | Philosophical Transactions of the Royal Society of London A: Mathematical, Physical and Engineering Sciences</a>
+proposes a "London Scale" in analogy with the Rio Scale.
+</p>
+
+<table>
+<tr><td style="width: 15%">
+<p>Type of Life</p>
+</td><td onclick="do_ldn()">
+<input type="radio" name="Ldn-Quality-Type" id="Ldn-Quality-Type-5" value="5" checked="checked" />
+<label for="Ldn-Quality-Type-5">
+(5) completely alien life form
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Type" id="Ldn-Quality-Type-4" value="4" />
+<label for="Ldn-Quality-Type-4">
+(4) likely to be non-terrestrial, but some uncertainty remains
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Type" id="Ldn-Quality-Type-3" value="3" />
+<label for="Ldn-Quality-Type-3">
+(3) life definitely, but a previously unknown variant of terrestrial life (in structure or composition) (e.g. if DNA is present, different amino acids are used)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Type" id="Ldn-Quality-Type-2" value="2" />
+<label for="Ldn-Quality-Type-2">
+(2) terrestrial-type life form, but some uncertainty remains
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Type" id="Ldn-Quality-Type-1" value="1" />
+<label for="Ldn-Quality-Type-1">
+(1) possible signature of life, but indirect information only (e.g. volatile, trace)
+</label>
+</td></tr>
+<tr><td>
+<p>Nature of the Evidence</p>
+</td><td onclick="do_ldn()">
+<input type="radio" name="Ldn-Quality-Nature" id="Ldn-Quality-Nature-6" value="6" checked="checked" />
+<label for="Ldn-Quality-Nature-6">
+(6) complex life (high level of organization)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Nature" id="Ldn-Quality-Nature-5" value="5" />
+<label for="Ldn-Quality-Nature-5">
+(5) simple life (low level of organization)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Nature" id="Ldn-Quality-Nature-4" value="4" />
+<label for="Ldn-Quality-Nature-4">
+(4) extant life with suspended functioning (like a spore)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Nature" id="Ldn-Quality-Nature-3" value="3" />
+<label for="Ldn-Quality-Nature-3">
+(3) uncertain whether living or not (like a virus)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Nature" id="Ldn-Quality-Nature-2" value="2" />
+<label for="Ldn-Quality-Nature-2">
+(2) fossilized life or remnants of life forms
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Nature" id="Ldn-Quality-Nature-1" value="1" />
+<label for="Ldn-Quality-Nature-1">
+(1) biomarkers (indirect evidence, like volatiles, metabolites, biochemical signatures, etc.)
+</label>
+</td></tr>
+<tr><td>
+<p>Method of Discovery</p>
+</td><td onclick="do_ldn()">
+<input type="radio" name="Ldn-Quality-Method" id="Ldn-Quality-Method-5" value="5" checked="checked" />
+<label for="Ldn-Quality-Method-5">
+(5) by analysing the result of a sample return mission (origin of the sample is well known)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Method" id="Ldn-Quality-Method-4" value="4" />
+<label for="Ldn-Quality-Method-4">
+(4) by analysing something found on Earth's surface or in the atmosphere (e.g. meteorite and atmospheric sample)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Method" id="Ldn-Quality-Method-3" value="3" />
+<label for="Ldn-Quality-Method-3">
+(3) by a manned mission, in situ, on another celestial body
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Method" id="Ldn-Quality-Method-2" value="2" />
+<label for="Ldn-Quality-Method-2">
+(2) by a surface robot, in situ, on another celestial body
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Method" id="Ldn-Quality-Method-1" value="1" />
+<label for="Ldn-Quality-Method-1">
+(1) by remote sensing from the surface of the Earth or from satellites, flybys, etc.
+</label>
+</td></tr>
+<tr><td>
+<p>Distance</p>
+</td><td onclick="do_ldn()">
+<input type="radio" name="Ldn-Quality-Distance" id="Ldn-Quality-Distance-4" value="4" checked="checked" />
+<label for="Ldn-Quality-Distance-4">
+(4) zero distance (on Earth)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Distance" id="Ldn-Quality-Distance-3" value="3" />
+<label for="Ldn-Quality-Distance-3">
+(3) inside the orbit of Jupiter (in situ research more easily possible)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Distance" id="Ldn-Quality-Distance-2" value="2" />
+<label for="Ldn-Quality-Distance-2">
+(2) on or outside the orbit of Jupiter, but in the Solar System (in situ research possible, but difficult)
+</label>
+<br />
+<input type="radio" name="Ldn-Quality-Distance" id="Ldn-Quality-Distance-1" value="1" />
+<label for="Ldn-Quality-Distance-1">
+(1) beyond the Solar System (in situ research impossible)
+</label>
+</td></tr>
+<tr><td>
+<p>Reliability</p>
+</td><td onclick="do_ldn()">
+<input type="radio" name="Ldn-Reliability" id="Ldn-Reliability-5" value="5" checked="checked" />
+<label for="Ldn-Reliability-5">
+(5) certain or highly reliable
+</label>
+<br />
+<input type="radio" name="Ldn-Reliability" id="Ldn-Reliability-4" value="4" />
+<label for="Ldn-Reliability-4">
+(4) probably real
+</label>
+<br />
+<input type="radio" name="Ldn-Reliability" id="Ldn-Reliability-3" value="3" />
+<label for="Ldn-Reliability-3">
+(3) testable, needs further evidence
+</label>
+<br />
+<input type="radio" name="Ldn-Reliability" id="Ldn-Reliability-2" value="2" />
+<label for="Ldn-Reliability-2">
+(2) controversial, but not rejectable
+</label>
+<br />
+<input type="radio" name="Ldn-Reliability" id="Ldn-Reliability-1" value="1" />
+<label for="Ldn-Reliability-1">
+(1) probably not real
+</label>
+<br />
+<input type="radio" name="Ldn-Reliability" id="Ldn-Reliability-0" value="0" />
+<label for="Ldn-Reliability-0">
+(0) obviously fake or fraudulent 
+</label>
+</td></tr>
+</table>
+
+<h3>Scores</h3>
+
+<div class="scoretablist">
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Quality</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Type</td>
+<td id="Value-Ldn-Quality-Type"></td>
+</tr>
+<tr>
+<td>Nature</td>
+<td id="Value-Ldn-Quality-Nature"></td>
+</tr>
+<tr>
+<td>Method</td>
+<td id="Value-Ldn-Quality-Method"></td>
+</tr>
+<tr>
+<td>Distance</td>
+<td id="Value-Ldn-Quality-Distance"></td>
+</tr>
+<tr>
+<td>Total</td>
+<td id="Value-Ldn-Quality--Total-"></td>
+</tr>
+</table>
+</div>
+
+<div class="scoretab">
+<table>
+<tr>
+<td>Overall</td>
+<td>Score</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td id="Value-Ldn-Quality"></td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td id="Value-Ldn-Reliability"></td>
+</tr>
+<tr>
+<td>Total Score</td>
+<td id="Value-Ldn-Score"></td>
+</tr>
+</table>
+</div>
+
+</div>
+
+<hr />
+
+<p>
+Back to the <a href="index.html">extraterrestrial-contacts index page</a>
+</p>
+
+<script type="text/javascript">
+
+	// Init the result tables
+	// Down here because the tables' HTML widgets have to be loaded first
+	do_ldn();
+
+</script>
+
+</body>
+</html>
